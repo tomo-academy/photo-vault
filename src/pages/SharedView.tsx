@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Photo, Folder } from '../types';
-import PhotoCard from '../components/PhotoCard';
-import { QRIcon } from '../components/Icons';
+import { Photo, Folder } from '../../types';
+import PhotoCard from '../../components/PhotoCard';
+import { QRIcon } from '../../components/Icons';
 
 interface SharedViewProps {
   shareId: string;
