@@ -46,8 +46,8 @@ const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, title, shareUr
                 level="H" 
                 includeMargin={false}
                 imageSettings={{
-                  // Centered AJ Branding icon
-                  src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f87171'%3E%3Crect width='24' height='24' rx='12' fill='%23000'/%3E%3Ctext x='12' y='16' font-family='Arial' font-weight='black' font-size='10' text-anchor='middle' fill='white'%3EAJ%3C/text%3E%3C/svg%3E",
+                  // Centered AJ Branding icon with teal accent
+                  src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310a37f'%3E%3Crect width='24' height='24' rx='12' fill='%23000'/%3E%3Ctext x='12' y='16' font-family='Arial' font-weight='black' font-size='10' text-anchor='middle' fill='white'%3EAJ%3C/text%3E%3C/svg%3E",
                   height: 48,
                   width: 48,
                   excavate: true,
@@ -70,7 +70,7 @@ const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, title, shareUr
 
         {/* Actions */}
         <div className="w-full space-y-3 animate-slide-up" style={{ animationDelay: '400ms' }}>
-          <div className={`text-center text-[10px] font-black text-[#f87171] uppercase tracking-[0.3em] h-4 transition-opacity duration-300 ${copied ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`text-center text-[10px] font-black text-[#10a37f] uppercase tracking-[0.3em] h-4 transition-opacity duration-300 ${copied ? 'opacity-100' : 'opacity-0'}`}>
             Link Copied!
           </div>
           
