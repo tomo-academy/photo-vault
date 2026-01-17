@@ -1,0 +1,7 @@
+{
+  "name": "AJ VAULT",
+  "description": "A high-performance photo management and sharing platform with QR-based instant sharing and folder-based organization.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
