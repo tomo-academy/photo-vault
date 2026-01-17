@@ -69,8 +69,29 @@ const App: React.FC = () => {
 
   const shareUrl = useMemo(() => {
     if (!sharingTarget) return '';
-    return `${window.location.origin}/share/${sharingTarget.shareId}`;
-  }, [sharingTarget]);
+    
+    // Prepare share data to encode in URL
+    let shareData: any = {
+      name: sharingTarget.name,
+      type: sharingTarget.id ? 'folder' : 'library'
+    };
+    
+    // Get photos to share
+    if (sharingTarget.id) {
+      shareData.photos = state.photos
+        .filter(p => p.folderId === sharingTarget.id)
+        .slice(0, 50) // Limit to 50 photos to avoid URL length issues
+        .map(p => ({ id: p.id, name: p.name, url: p.url, createdAt: p.createdAt, size: p.size }));
+    } else {
+      shareData.photos = state.photos
+        .slice(0, 50)
+        .map(p => ({ id: p.id, name: p.name, url: p.url, createdAt: p.createdAt, size: p.size }));
+    }
+    
+    // Encode data in URL hash for cross-device sharing
+    const encodedData = encodeURIComponent(JSON.stringify(shareData));
+    return `${window.location.origin}/share/${sharingTarget.shareId}#data=${encodedData}`;
+  }, [sharingTarget, state.photos]);
 
   useEffect(() => {
     localStorage.setItem('aj_vault_state', JSON.stringify(state));

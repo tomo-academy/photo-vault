@@ -20,9 +20,29 @@ const SharedView: React.FC<SharedViewProps> = ({ shareId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load shared data from localStorage (in production, this would be an API call)
+    // Try to load from URL hash first (for cross-device sharing)
     const loadSharedData = () => {
       try {
+        // Check if data is encoded in URL hash
+        const urlHash = window.location.hash;
+        if (urlHash && urlHash.startsWith('#data=')) {
+          try {
+            const encodedData = urlHash.substring(6);
+            const decodedData = JSON.parse(decodeURIComponent(encodedData));
+            setSharedData({
+              type: decodedData.type || 'library',
+              name: decodedData.name || 'Shared Photos',
+              photos: decodedData.photos || [],
+              isValid: true,
+            });
+            setLoading(false);
+            return;
+          } catch (e) {
+            console.error('Failed to parse URL data:', e);
+          }
+        }
+
+        // Fallback: Try localStorage (same device/browser)
         const savedState = localStorage.getItem('aj_vault_state');
         if (!savedState) {
           setSharedData({ type: 'library', name: 'Shared Content', photos: [], isValid: false });
