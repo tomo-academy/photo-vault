@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import App from './App';
-import SharedView from './pages/SharedView';
+import SharedView from './src/pages/SharedView';
 
 const Router: React.FC = () => {
   const [route, setRoute] = useState<{ path: string; params?: any }>({ path: '/' });
